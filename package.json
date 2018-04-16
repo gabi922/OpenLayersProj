@@ -1,5 +1,5 @@
 {
-  "name": "openlayers",
+  "name": "openlayers-proj",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -21,7 +21,9 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@types/openlayers": "^4.6.8",
     "core-js": "^2.4.1",
+    "openlayers": "^4.6.5",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
