@@ -1,7 +1,20 @@
-<div id="map">
+<div style="display: flex">
+    <div id="map">
+    </div>
+
+    <div style="padding: 10px">
+        <h3>Layers</h3>
+
+        <ul>
+            <li *ngFor="let layer of layers; let idx = index">
+                <span [style.font-weight] = "idx == layers.length - 1 ? 'bold' : 'normal'">{{layer.name}}</span> 
+            </li>
+        </ul>
+    </div>
 </div>
 
 <div class="buttons">
-    <button (click)="edit()">Edit</button>
-    <button (click)="save()">Save</button>
+    <button (click)="addLayer()">Add Layer</button>
+    <button (click)="newNode()">New Node</button>
+    <button (click)="newLink()">New Link</button>
 </div>
