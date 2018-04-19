@@ -10,7 +10,8 @@ import { MultiVectorSnap } from "./multi-vector-snap.interaction";
 export class MapComponent implements OnInit {
     private map: ol.Map;
     private draw: ol.interaction.Draw;
-    private snap: ol.interaction.Snap;
+    private multiLayerSnap: ol.interaction.Snap;
+    private currentLayerSnap: ol.interaction.Snap;
     private layers: { name: string, vector: ol.layer.Vector }[] = [];
 
     constructor() { }
@@ -78,8 +79,12 @@ export class MapComponent implements OnInit {
           this.map.removeInteraction(this.draw);
         }
 
-        if (this.snap) {
-            this.map.removeInteraction(this.snap);
+        if (this.multiLayerSnap) {
+            this.map.removeInteraction(this.multiLayerSnap);
+        }
+
+        if (this.currentLayerSnap) {
+            this.map.removeInteraction(this.currentLayerSnap);
         }
     }
 
@@ -90,9 +95,15 @@ export class MapComponent implements OnInit {
         });
         this.map.addInteraction(this.draw);
 
-        this.snap = new MultiVectorSnap({
+        this.multiLayerSnap = new MultiVectorSnap({
             source: this.layers.map(l => l.vector.getSource())
         });
-        this.map.addInteraction(this.snap);
+        this.map.addInteraction(this.multiLayerSnap);
+
+        this.currentLayerSnap = new ol.interaction.Snap({
+            source: this.layers[this.layers.length - 1].vector.getSource()
+        });
+        this.map.addInteraction(this.currentLayerSnap);
+
     }
 }
